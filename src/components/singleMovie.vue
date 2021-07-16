@@ -30,7 +30,7 @@ export default {
 <style lang="scss" scoped>
 .single-movie {
   position: relative;
-  margin-left: 10px;
+  margin-right: 10px;
   margin-bottom: 20px;
 
   &:hover .info-movie {
