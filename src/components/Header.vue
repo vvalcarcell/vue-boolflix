@@ -6,6 +6,7 @@
       v-model="inputText"
       @keyup.enter="$emit('search', inputText)"
     />
+    <button @click="$emit('search', inputText)">Search</button>
   </div>
 </template>
 
@@ -21,5 +22,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.container {
+  height: 100px;
+  display: flex;
+  align-items: center;
+}
 </style>
 

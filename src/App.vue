@@ -21,6 +21,15 @@ export default {
       moviesArray: [],
     };
   },
+  created() {
+    axios
+      .get(
+        "https://api.themoviedb.org/3/movie/popular?api_key=852cb3344c4a5db3666052336469a824"
+      )
+      .then((response) => {
+        this.moviesArray = response.data.results;
+      });
+  },
   methods: {
     searchMovies(inputText) {
       axios
