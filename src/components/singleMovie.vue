@@ -8,7 +8,14 @@
         Original Title: {{ movie.original_title }} {{ movie.original_name }}
       </div>
       <div class="info">Original Language: {{ movie.original_language }}</div>
-      <div class="info">Vote-average: {{ vote }}</div>
+      <!-- <div class="info">Vote-average: {{ vote }}</div> -->
+      <ul v-if="vote > 0">
+        <li><i class="far fa-star"></i></li>
+        <li v-if="vote > 1"><i class="far fa-star"></i></li>
+        <li v-if="vote > 2"><i class="far fa-star"></i></li>
+        <li v-if="vote > 3"><i class="far fa-star"></i></li>
+        <li v-if="vote > 4"><i class="far fa-star"></i></li>
+      </ul>
     </div>
 
     <div class="background"></div>
@@ -56,6 +63,19 @@ export default {
     z-index: 1002;
     color: white;
     display: none;
+
+    h3 {
+      margin-bottom: 15px;
+    }
+
+    .info {
+      margin-bottom: 5px;
+    }
+
+    ul {
+      display: flex;
+      margin-top: 5px;
+    }
   }
 
   .background {

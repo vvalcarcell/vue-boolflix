@@ -52,7 +52,6 @@ export default {
     }
 
     ul {
-      list-style: none;
       display: flex;
       margin-top: 15px;
       font-size: 15px;
