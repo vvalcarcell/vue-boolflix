@@ -34,7 +34,7 @@ export default {
     searchMovies(inputText) {
       axios
         .get(
-          "https://api.themoviedb.org/3/search/movie?api_key=852cb3344c4a5db3666052336469a824&query=" +
+          "https://api.themoviedb.org/3/search/multi?api_key=852cb3344c4a5db3666052336469a824&query=" +
             inputText
         )
         .then((response) => {

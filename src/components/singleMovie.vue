@@ -3,10 +3,12 @@
     <img :src="completeSrc(movie.poster_path)" alt="" />
 
     <div class="info-movie">
-      <h3>{{ movie.title }}</h3>
-      <div class="info">Original Title: {{ movie.original_title }}</div>
+      <h3>{{ movie.title }} {{ movie.name }}</h3>
+      <div class="info">
+        Original Title: {{ movie.original_title }} {{ movie.original_name }}
+      </div>
       <div class="info">Original Language: {{ movie.original_language }}</div>
-      <div class="info">Vote-average: {{ movie.vote_average }}</div>
+      <div class="info">Vote-average: {{ vote }}</div>
     </div>
 
     <div class="background"></div>
@@ -18,6 +20,11 @@ export default {
   name: "singleMovie",
   props: {
     movie: Object,
+  },
+  data() {
+    return {
+      vote: Math.round(this.movie.vote_average / 2),
+    };
   },
   methods: {
     completeSrc(partialSrc) {
