@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Header @search="searchMovies" />
-    <Main />
+    <Main :moviesArray="moviesArray" />
   </div>
 </template>
 
@@ -37,4 +37,5 @@ export default {
 </script>
 
 <style lang="scss">
+@import url("./style/App.scss");
 </style>
