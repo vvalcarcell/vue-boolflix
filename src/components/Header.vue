@@ -12,6 +12,7 @@
       </ul>
     </nav>
 
+    <!-- inputText viene inviato come argomento al method "searchMovies" per creare la API dinamica -->
     <div class="search-box">
       <input
         type="text"
@@ -61,7 +62,7 @@ export default {
         text-decoration: none;
         color: white;
       }
-
+      /** quando vado su uno dei tag "a" l'underline compare a tutti... wtf!?! */
       //   &:hover {
       //     text-decoration: underline;
       //   }

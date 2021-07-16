@@ -1,14 +1,16 @@
 <template>
   <div class="single-movie">
+    <!-- inviando "movie.poster_path" come argomento del method, mi ritorna l'src completo -->
     <img :src="completeSrc(movie.poster_path)" alt="" />
 
     <div class="info-movie">
+      <!-- a seconda l'oggetto sia un film o una serie tv -->
       <h3>{{ movie.title }} {{ movie.name }}</h3>
       <div class="info">
         Original Title: {{ movie.original_title }} {{ movie.original_name }}
       </div>
       <div class="info">Original Language: {{ movie.original_language }}</div>
-      <!-- <div class="info">Vote-average: {{ vote }}</div> -->
+
       <ul v-if="vote > 0">
         <li><i class="far fa-star"></i></li>
         <li v-if="vote > 1"><i class="far fa-star"></i></li>
@@ -30,6 +32,7 @@ export default {
   },
   data() {
     return {
+      // arrotondo la media dei voti all'intero più vicino e divido per 2 per utilizzare solo 5 stelle intere
       vote: Math.round(this.movie.vote_average / 2),
     };
   },

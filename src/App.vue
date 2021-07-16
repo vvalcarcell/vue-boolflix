@@ -18,9 +18,12 @@ export default {
   },
   data() {
     return {
+      /** lista che verrà stampata */
       moviesArray: [],
     };
   },
+
+  /** Al caricamento della pagina faccio partire una chiamata per i film + popolari*/
   created() {
     axios
       .get(
@@ -30,6 +33,8 @@ export default {
         this.moviesArray = response.data.results;
       });
   },
+
+  /** Chiamata dinamica verso film o serie tv in base alla ricerca dell'utente */
   methods: {
     searchMovies(inputText) {
       axios

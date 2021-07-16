@@ -1,5 +1,7 @@
 <template>
   <div class="container">
+    <!-- Creo tanti components "singleMovie" quanti sono gli elementi di moviesArray -->
+    <!-- Invio al component "singleMovie" il singolo oggetto contenuto in moviesArray -->
     <singleMovie v-for="movie in moviesArray" :key="movie.id" :movie="movie" />
   </div>
 </template>
