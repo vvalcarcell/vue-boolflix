@@ -10,6 +10,10 @@
         Original Title: {{ movie.original_title }} {{ movie.original_name }}
       </div>
       <div class="info">Original Language: {{ movie.original_language }}</div>
+      <div class="info">
+        Nation:
+        <img class="flag" :src="returnFlag(movie.original_language)" alt="" />
+      </div>
 
       <ul v-if="vote > 0">
         <li><i class="far fa-star"></i></li>
@@ -39,6 +43,9 @@ export default {
   methods: {
     completeSrc(partialSrc) {
       return "https://image.tmdb.org/t/p/w342" + partialSrc;
+    },
+    returnFlag(originalLanguage) {
+      return require("../assets/flags/" + originalLanguage + ".svg");
     },
   },
 };
@@ -73,6 +80,11 @@ export default {
 
     .info {
       margin-bottom: 5px;
+    }
+
+    .flag {
+      width: 20px;
+      margin-top: 5px;
     }
 
     ul {
