@@ -20,6 +20,7 @@ export default {
     return {
       /** lista che verrà stampata */
       moviesArray: [],
+      popularMovies: [],
     };
   },
 
@@ -31,20 +32,25 @@ export default {
       )
       .then((response) => {
         this.moviesArray = response.data.results;
+        this.popularMovies = response.data.results;
       });
   },
 
   /** Chiamata dinamica verso film o serie tv in base alla ricerca dell'utente */
   methods: {
     searchMovies(inputText) {
-      axios
-        .get(
-          "https://api.themoviedb.org/3/search/multi?api_key=852cb3344c4a5db3666052336469a824&query=" +
-            inputText
-        )
-        .then((response) => {
-          this.moviesArray = response.data.results;
-        });
+      if (inputText !== "") {
+        axios
+          .get(
+            "https://api.themoviedb.org/3/search/multi?api_key=852cb3344c4a5db3666052336469a824&query=" +
+              inputText
+          )
+          .then((response) => {
+            this.moviesArray = response.data.results;
+          });
+      } else {
+        this.moviesArray = this.popularMovies;
+      }
     },
   },
 };

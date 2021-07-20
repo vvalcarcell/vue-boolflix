@@ -27,7 +27,7 @@
           <i class="fas fa-star"></i>
         </li>
 
-        <li v-for="(num, index) in stars" :key="index">
+        <li v-for="(num, index) in emptyStars" :key="index">
           <i class="far fa-star"></i>
         </li>
       </ul>
@@ -47,7 +47,7 @@ export default {
     return {
       // arrotondo la media dei voti all'intero più vicino e divido per 2 per utilizzare solo 5 stelle intere
       vote: Math.round(this.movie.vote_average / 2),
-      stars: 5 - this.vote,
+      emptyStars: 5 - Math.round(this.movie.vote_average / 2),
     };
   },
   methods: {
