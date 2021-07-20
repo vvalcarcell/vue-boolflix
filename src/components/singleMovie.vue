@@ -15,12 +15,21 @@
         <img class="flag" :src="returnFlag(movie.original_language)" alt="" />
       </div>
 
-      <ul v-if="vote > 0">
+      <!-- <ul v-if="vote > 0">
         <li><i class="far fa-star"></i></li>
         <li v-if="vote > 1"><i class="far fa-star"></i></li>
         <li v-if="vote > 2"><i class="far fa-star"></i></li>
         <li v-if="vote > 3"><i class="far fa-star"></i></li>
         <li v-if="vote > 4"><i class="far fa-star"></i></li>
+      </ul> -->
+      <ul>
+        <li v-for="(n, index) in vote" :key="index">
+          <i class="fas fa-star"></i>
+        </li>
+
+        <li v-for="(num, index) in stars" :key="index">
+          <i class="far fa-star"></i>
+        </li>
       </ul>
     </div>
 
@@ -38,12 +47,14 @@ export default {
     return {
       // arrotondo la media dei voti all'intero più vicino e divido per 2 per utilizzare solo 5 stelle intere
       vote: Math.round(this.movie.vote_average / 2),
+      stars: 5 - this.vote,
     };
   },
   methods: {
     completeSrc(partialSrc) {
       return "https://image.tmdb.org/t/p/w342" + partialSrc;
     },
+    /** Mettendo il bind ad src, senza il method "require" non mi prende l'svg(tratta assets come un modulo?) */
     returnFlag(originalLanguage) {
       return require("../assets/flags/" + originalLanguage + ".svg");
     },
