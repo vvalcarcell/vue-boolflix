@@ -12,7 +12,6 @@
       </ul>
     </nav>
 
-    <!-- inputText viene inviato come argomento al method "searchMovies" per creare la API dinamica -->
     <div class="search-box">
       <input
         id="input-search"
@@ -20,12 +19,12 @@
         type="text"
         placeholder="Search..."
         v-model="inputText"
-        @keyup.enter="$emit('search', inputText)"
+        @keyup.enter="passInputText()"
       />
       <div
         class="search-icon"
         @click="
-          $emit('search', inputText);
+          passInputText();
           getSearchBar();
         "
       >
@@ -46,15 +45,18 @@ export default {
   },
   methods: {
     getSearchBar() {
-      if (this.clickIcon == false) {
-        this.clickIcon = true;
-        setInterval(() => {
+      this.clickIcon = !this.clickIcon;
+
+      if (this.clickIcon) {
+        this.$nextTick(() => {
           document.getElementById("input-search").focus();
-        }, 800);
-      } else {
-        this.clickIcon = false;
-        this.inputText = "";
+        });
       }
+    },
+    // inputText viene inviato come argomento al method "searchMovies" per creare la API dinamica
+    passInputText() {
+      this.$emit("search", this.inputText);
+      //   this.inputText = "";
     },
   },
 };
