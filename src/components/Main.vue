@@ -1,7 +1,7 @@
 <template>
   <div class="container">
-    <div v-if="filmsNotFound">Films Not Found</div>
-    <div v-if="moviesNotFound">Movies Not Found</div>
+    <div v-if="filmsNotFound">Error: Films Not Found</div>
+    <div v-if="seriesNotFound">Error: Series Not Found</div>
 
     <div class="films-container" v-if="filmsSearched.length != 0">
       <h1>Film</h1>
@@ -49,7 +49,7 @@ export default {
     filmsSearched: Array,
     seriesSearched: Array,
     filmsNotFound: Boolean,
-    moviesNotFound: Boolean,
+    seriesNotFound: Boolean,
   },
   components: {
     singleMovie,

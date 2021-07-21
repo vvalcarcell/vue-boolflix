@@ -11,12 +11,12 @@
       </div>
       <div class="info">Original Language: {{ movie.original_language }}</div>
       <div class="info">
-        Nation:
+        Country:
         <img class="flag" :src="returnFlag(movie.original_language)" alt="" />
       </div>
 
       <ul>
-        <li v-for="(n, index) in vote" :key="index">
+        <li class="full-stars" v-for="(n, index) in vote" :key="index">
           <i class="fas fa-star"></i>
         </li>
 
@@ -61,6 +61,8 @@ export default {
 
 <style lang="scss" scoped>
 .single-movie {
+  display: flex;
+  justify-content: center;
   position: relative;
   margin-right: 10px;
   margin-bottom: 20px;
@@ -76,14 +78,17 @@ export default {
   }
   .info-movie {
     text-transform: capitalize;
+    text-align: center;
+    padding: 0 20px;
     position: absolute;
     top: 30%;
-    left: 20px;
     z-index: 1002;
     color: white;
     display: none;
     h3 {
       margin-bottom: 15px;
+      border-bottom: 1px solid white;
+      padding-bottom: 5px;
     }
     .info {
       margin-bottom: 5px;
@@ -94,7 +99,12 @@ export default {
     }
     ul {
       display: flex;
+      justify-content: center;
       margin-top: 5px;
+
+      .full-stars {
+        color: gold;
+      }
     }
   }
   .background {

@@ -15,12 +15,22 @@
     <!-- inputText viene inviato come argomento al method "searchMovies" per creare la API dinamica -->
     <div class="search-box">
       <input
+        v-if="clickIcon"
         type="text"
-        placeholder="Search"
+        placeholder="Search..."
         v-model="inputText"
         @keyup.enter="$emit('search', inputText)"
+        autofocus
       />
-      <button @click="$emit('search', inputText)">Search</button>
+      <div
+        class="search-icon"
+        @click="
+          $emit('search', inputText);
+          getSearchBar();
+        "
+      >
+        <i class="fas fa-search"></i>
+      </div>
     </div>
   </div>
 </template>
@@ -31,7 +41,17 @@ export default {
   data() {
     return {
       inputText: "",
+      clickIcon: false,
     };
+  },
+  methods: {
+    getSearchBar() {
+      if (this.clickIcon == false) {
+        this.clickIcon = true;
+      } else {
+        this.clickIcon = false;
+      }
+    },
   },
 };
 </script>
@@ -69,6 +89,10 @@ export default {
     }
   }
   .search-box {
+    display: flex;
+    padding-top: 12px;
+    padding-right: 15px;
+
     input[type="text"] {
       margin-right: 10px;
       padding: 3px;
@@ -84,6 +108,11 @@ export default {
       &:focus {
         outline: none;
       }
+    }
+
+    .search-icon {
+      font-size: 25px;
+      cursor: pointer;
     }
   }
 }

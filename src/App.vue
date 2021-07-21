@@ -6,7 +6,7 @@
       :filmsSearched="filmsSearched"
       :seriesSearched="seriesSearched"
       :filmsNotFound="filmsNotFound"
-      :moviesNotFound="moviesNotFound"
+      :seriesNotFound="seriesNotFound"
     />
   </div>
 </template>
@@ -23,7 +23,6 @@ export default {
   },
   data() {
     return {
-      /** lista che verrà stampata */
       popularMovies: [],
       filmsSearched: [],
       seriesSearched: [],
@@ -34,7 +33,7 @@ export default {
       seriesAPI:
         "https://api.themoviedb.org/3/search/tv?api_key=852cb3344c4a5db3666052336469a824&query=",
       filmsNotFound: false,
-      moviesNotFound: false,
+      seriesNotFound: false,
     };
   },
   /** Al caricamento della pagina faccio partire una chiamata per i film + popolari*/
@@ -51,6 +50,8 @@ export default {
           this.filmsSearched = response.data.results;
           if (response.data.total_results == 0) {
             this.filmsNotFound = true;
+          } else {
+            this.filmsNotFound = false;
           }
           console.log(response);
         });
@@ -58,14 +59,16 @@ export default {
         axios.get(this.seriesAPI + inputText).then((response) => {
           this.seriesSearched = response.data.results;
           if (response.data.total_results == 0) {
-            this.moviesNotFound = true;
+            this.seriesNotFound = true;
+          } else {
+            this.seriesNotFound = false;
           }
         });
       } else {
         this.filmsSearched = [];
         this.seriesSearched = [];
         this.filmsNotFound = false;
-        this.moviesNotFound = false;
+        this.seriesNotFound = false;
       }
     },
   },
