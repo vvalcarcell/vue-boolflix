@@ -45,7 +45,11 @@ export default {
   },
   methods: {
     completeSrc(partialSrc) {
-      return "https://image.tmdb.org/t/p/w342" + partialSrc;
+      if (partialSrc == null) {
+        return require("../assets/no-img.png");
+      } else {
+        return "https://image.tmdb.org/t/p/w342" + partialSrc;
+      }
     },
     /** Mettendo il bind ad src, senza il method "require" non mi prende l'svg(tratta assets come un modulo?) */
     returnFlag(originalLanguage) {

@@ -38,7 +38,7 @@ export default {
 
 <style lang="scss" scoped>
 .container {
-  padding: 25px;
+  padding: 25px 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -55,7 +55,7 @@ export default {
     ul {
       display: flex;
       margin-top: 15px;
-      font-size: 15px;
+      font-size: 18px;
 
       a {
         margin-right: 18px;
@@ -69,8 +69,6 @@ export default {
     }
   }
   .search-box {
-    margin-right: 10px;
-
     input[type="text"] {
       margin-right: 10px;
       padding: 3px;

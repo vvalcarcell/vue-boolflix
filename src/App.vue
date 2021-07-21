@@ -1,10 +1,12 @@
 <template>
   <div id="app">
-    <Header @search="searchMovies" />
+    <Header @search="searchResults" />
     <Main
       :popularMovies="popularMovies"
       :filmsSearched="filmsSearched"
       :seriesSearched="seriesSearched"
+      :filmsNotFound="filmsNotFound"
+      :moviesNotFound="moviesNotFound"
     />
   </div>
 </template>
@@ -25,43 +27,45 @@ export default {
       popularMovies: [],
       filmsSearched: [],
       seriesSearched: [],
+      popularAPI:
+        "https://api.themoviedb.org/3/movie/popular?api_key=852cb3344c4a5db3666052336469a824",
+      filmsAPI:
+        "https://api.themoviedb.org/3/search/movie?api_key=852cb3344c4a5db3666052336469a824&query=",
+      seriesAPI:
+        "https://api.themoviedb.org/3/search/tv?api_key=852cb3344c4a5db3666052336469a824&query=",
+      filmsNotFound: false,
+      moviesNotFound: false,
     };
   },
   /** Al caricamento della pagina faccio partire una chiamata per i film + popolari*/
   created() {
-    axios
-      .get(
-        "https://api.themoviedb.org/3/movie/popular?api_key=852cb3344c4a5db3666052336469a824"
-      )
-      .then((response) => {
-        this.moviesArray = response.data.results;
-        this.popularMovies = response.data.results;
-      });
+    axios.get(this.popularAPI).then((response) => {
+      this.popularMovies = response.data.results;
+    });
   },
   /** Chiamata dinamica verso film o serie tv in base alla ricerca dell'utente */
   methods: {
-    searchMovies(inputText) {
+    searchResults(inputText) {
       if (inputText !== "") {
-        axios
-          .get(
-            "https://api.themoviedb.org/3/search/movie?api_key=852cb3344c4a5db3666052336469a824&query=" +
-              inputText
-          )
-          .then((response) => {
-            this.filmsSearched = response.data.results;
-          });
+        axios.get(this.filmsAPI + inputText).then((response) => {
+          this.filmsSearched = response.data.results;
+          if (response.data.total_results == 0) {
+            this.filmsNotFound = true;
+          }
+          console.log(response);
+        });
 
-        axios
-          .get(
-            "https://api.themoviedb.org/3/search/tv?api_key=852cb3344c4a5db3666052336469a824&query=" +
-              inputText
-          )
-          .then((response) => {
-            this.seriesSearched = response.data.results;
-          });
+        axios.get(this.seriesAPI + inputText).then((response) => {
+          this.seriesSearched = response.data.results;
+          if (response.data.total_results == 0) {
+            this.moviesNotFound = true;
+          }
+        });
       } else {
         this.filmsSearched = [];
         this.seriesSearched = [];
+        this.filmsNotFound = false;
+        this.moviesNotFound = false;
       }
     },
   },
