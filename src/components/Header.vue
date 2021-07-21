@@ -49,6 +49,7 @@ export default {
       if (this.clickIcon == false) {
         this.clickIcon = true;
       } else {
+        this.inputText = "";
         this.clickIcon = false;
       }
     },
