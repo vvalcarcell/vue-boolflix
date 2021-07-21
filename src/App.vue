@@ -1,7 +1,11 @@
 <template>
   <div id="app">
     <Header @search="searchMovies" />
-    <Main :moviesArray="moviesArray" />
+    <Main
+      :popularMovies="popularMovies"
+      :filmsSearched="filmsSearched"
+      :seriesSearched="seriesSearched"
+    />
   </div>
 </template>
 
@@ -18,8 +22,9 @@ export default {
   data() {
     return {
       /** lista che verrà stampata */
-      moviesArray: [],
       popularMovies: [],
+      filmsSearched: [],
+      seriesSearched: [],
     };
   },
   /** Al caricamento della pagina faccio partire una chiamata per i film + popolari*/
@@ -39,14 +44,24 @@ export default {
       if (inputText !== "") {
         axios
           .get(
-            "https://api.themoviedb.org/3/search/multi?api_key=852cb3344c4a5db3666052336469a824&query=" +
+            "https://api.themoviedb.org/3/search/movie?api_key=852cb3344c4a5db3666052336469a824&query=" +
               inputText
           )
           .then((response) => {
-            this.moviesArray = response.data.results;
+            this.filmsSearched = response.data.results;
+          });
+
+        axios
+          .get(
+            "https://api.themoviedb.org/3/search/tv?api_key=852cb3344c4a5db3666052336469a824&query=" +
+              inputText
+          )
+          .then((response) => {
+            this.seriesSearched = response.data.results;
           });
       } else {
-        this.moviesArray = this.popularMovies;
+        this.filmsSearched = [];
+        this.seriesSearched = [];
       }
     },
   },
