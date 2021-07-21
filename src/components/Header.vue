@@ -15,12 +15,12 @@
     <!-- inputText viene inviato come argomento al method "searchMovies" per creare la API dinamica -->
     <div class="search-box">
       <input
+        id="input-search"
         v-if="clickIcon"
         type="text"
         placeholder="Search..."
         v-model="inputText"
         @keyup.enter="$emit('search', inputText)"
-        autofocus
       />
       <div
         class="search-icon"
@@ -48,9 +48,12 @@ export default {
     getSearchBar() {
       if (this.clickIcon == false) {
         this.clickIcon = true;
+        setInterval(() => {
+          document.getElementById("input-search").focus();
+        }, 800);
       } else {
-        this.inputText = "";
         this.clickIcon = false;
+        this.inputText = "";
       }
     },
   },
