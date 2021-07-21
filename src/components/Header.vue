@@ -71,8 +71,21 @@ export default {
   .search-box {
     margin-right: 10px;
 
-    input {
+    input[type="text"] {
       margin-right: 10px;
+      padding: 3px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-weight: bold;
+
+      &::placeholder {
+        padding-left: 5px;
+        font-weight: bold;
+      }
+
+      &:focus {
+        outline: none;
+      }
     }
   }
 }

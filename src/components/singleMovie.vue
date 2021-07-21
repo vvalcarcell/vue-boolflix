@@ -1,8 +1,8 @@
 <template>
-  <div class="single-movie">
-    <!-- inviando "movie.poster_path" come argomento del method, mi ritorna l'src completo -->
-    <img :src="completeSrc(movie.poster_path)" alt="" />
-
+  <div
+    class="single-movie"
+    :style="'background-image:url(' + completeSrc(movie.poster_path) + ')'"
+  >
     <div class="info-movie">
       <!-- a seconda l'oggetto sia un film o una serie tv -->
       <h3>{{ movie.title }} {{ movie.name }}</h3>
@@ -15,19 +15,12 @@
         <img class="flag" :src="returnFlag(movie.original_language)" alt="" />
       </div>
 
-      <!-- <ul v-if="vote > 0">
-        <li><i class="far fa-star"></i></li>
-        <li v-if="vote > 1"><i class="far fa-star"></i></li>
-        <li v-if="vote > 2"><i class="far fa-star"></i></li>
-        <li v-if="vote > 3"><i class="far fa-star"></i></li>
-        <li v-if="vote > 4"><i class="far fa-star"></i></li>
-      </ul> -->
       <ul>
         <li v-for="(n, index) in vote" :key="index">
           <i class="fas fa-star"></i>
         </li>
 
-        <li v-for="(num, index) in emptyStars" :key="index">
+        <li v-for="(num, index) in emptyStars" :key="'A' + index">
           <i class="far fa-star"></i>
         </li>
       </ul>
@@ -67,15 +60,16 @@ export default {
   position: relative;
   margin-right: 10px;
   margin-bottom: 20px;
-
+  background-size: cover;
+  height: 510px;
+  width: 340px;
+  flex-shrink: 0;
   &:hover .info-movie {
     display: block;
   }
-
   &:hover .background {
     display: block;
   }
-
   .info-movie {
     text-transform: capitalize;
     position: absolute;
@@ -84,28 +78,23 @@ export default {
     z-index: 1002;
     color: white;
     display: none;
-
     h3 {
       margin-bottom: 15px;
     }
-
     .info {
       margin-bottom: 5px;
     }
-
     .flag {
       width: 20px;
       margin-top: 5px;
     }
-
     ul {
       display: flex;
       margin-top: 5px;
     }
   }
-
   .background {
-    height: calc(100% - 5px);
+    height: 100%;
     width: 100%;
     position: absolute;
     top: 0;

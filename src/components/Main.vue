@@ -1,8 +1,15 @@
 <template>
   <div class="container">
-    <!-- Creo tanti components "singleMovie" quanti sono gli elementi di moviesArray -->
-    <!-- Invio al component "singleMovie" il singolo oggetto contenuto in moviesArray -->
-    <singleMovie v-for="movie in moviesArray" :key="movie.id" :movie="movie" />
+    <h1>I più popolari</h1>
+    <div class="row-popular">
+      <!-- Creo tanti components "singleMovie" quanti sono gli elementi di moviesArray -->
+      <!-- Invio al component "singleMovie" il singolo oggetto contenuto in moviesArray -->
+      <singleMovie
+        v-for="movie in moviesArray"
+        :key="movie.id"
+        :movie="movie"
+      />
+    </div>
   </div>
 </template>
 
@@ -20,9 +27,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.container {
+.row-popular {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  overflow-x: scroll;
 }
 </style>

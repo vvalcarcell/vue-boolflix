@@ -9,7 +9,6 @@
 import axios from "axios";
 import Main from "./components/Main.vue";
 import Header from "./components/Header.vue";
-
 export default {
   name: "App",
   components: {
@@ -23,7 +22,6 @@ export default {
       popularMovies: [],
     };
   },
-
   /** Al caricamento della pagina faccio partire una chiamata per i film + popolari*/
   created() {
     axios
@@ -35,7 +33,6 @@ export default {
         this.popularMovies = response.data.results;
       });
   },
-
   /** Chiamata dinamica verso film o serie tv in base alla ricerca dell'utente */
   methods: {
     searchMovies(inputText) {
